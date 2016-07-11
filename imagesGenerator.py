@@ -116,18 +116,18 @@ def generateImages():
     imageIndexToPath = {}
     counter = 0
     for filePath in filePaths:
-        imageIndex = counter
-        imageIndexToPath[imageIndex] = filePath
-        print(filePath + " -> " + imageIndex)
-        generateImage(filePath, str(constants.TARGET_PATH + "Images/" + imageIndex))
+        imageName = functions.indexToImageName(counter)
+        imageIndexToPath[counter] = filePath
+        print(filePath + " -> " + imageName)
+        generateImage(filePath, str(constants.TARGET_PATH + "Images/" + imageName))
         counter += 1
     startOfTestDataset = counter
-    filepaths = functions.getAllFilePathsTestDataset()
+    filePaths = functions.getAllFilePathsTestDataset()
     for filePath in filePaths:
-        imageIndex = counter
-        imageIndexToPath[imageIndex] = filePath
-        print(filePath + " -> " + imageIndex)
-        generateImage(filePath, str(constants.TARGET_PATH + "Images/" + imageIndex))
+        imageName = functions.indexToImageName(counter)
+        imageIndexToPath[counter] = filePath
+        print(filePath + " -> " + imageName)
+        generateImage(filePath, str(constants.TARGET_PATH + "Images/" + imageName))
         counter += 1
 
     functions.saveDictToFile(imageIndexToPath, str(constants.TARGET_PATH + "imageIndexToPath.txt"))

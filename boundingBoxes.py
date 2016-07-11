@@ -39,7 +39,7 @@ def scaleNormalize(traceGroupBoundingBox, avgStrokeHeight, withAntialias, xmax, 
 
     return
 
-def generateXmlWithAnnotations(forImage, pathToInkml):
+def generateXmlWithAnnotations(forImageIndex, pathToInkml):
     inkml = untangle.parse(pathToInkml)
     traceGroups = inkml.ink.traceGroup.traceGroup
 
@@ -63,7 +63,7 @@ def generateXmlWithAnnotations(forImage, pathToInkml):
                     strokeIdToTraceGroup[strokeId] = traceGroup['xml:id']
                     strokeIdToSymbolName[strokeId] = symbolName
             except:
-                print("Tracewarning on: " + forImage)
+                print("Tracewarning on: " + str(forImageIndex))
                 del traceGroupBoundingBox[traceGroup['xml:id']]
                 del traceGroupToSymbolName[traceGroup['xml:id']]
 
@@ -116,7 +116,7 @@ def generateXmlWithAnnotations(forImage, pathToInkml):
             if (strokeWidth < 2*strokeHeight) and (len(stroke) > 8):
                 strokeHeights.append(strokeHeight)
         else:
-            print("Warning on for image: " + forImage + " strokeId: " + str(strokeId))
+            print("Warning on for image: " + str(forImageIndex) + " strokeId: " + str(strokeId))
 
     sortedHeights = sorted(strokeHeights)
     strokeHeightsLength = len(strokeHeights)
@@ -183,7 +183,7 @@ def prettify(elem):
 
 def generateBoundingBoxes(imageIndexToPath):
     for imageIndex in imageIndexToPath:
-        print('Generating annotations for ' + imageIndex)
+        print('Generating annotations for ' + str(imageIndex))
         xml = generateXmlWithAnnotations(imageIndex, imageIndexToPath[imageIndex])
         with open(str(constants.TARGET_PATH + "Annotations/" + str(imageIndex).zfill(5) + ".xml"), "w") as f:
             f.write(xml)

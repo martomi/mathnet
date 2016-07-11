@@ -13,6 +13,9 @@ def loadDictFromFile(fileName):
         dict[key] = val
     return dict
 
+def indexToImageName(index):
+    return "image" + str(index).zfill(5) + ".pbm"
+
 def getFilePathsForDataset(datasetName):
     filePaths = []
     with open("datasets/" + datasetName + ".txt") as f:
