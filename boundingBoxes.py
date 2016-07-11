@@ -184,6 +184,6 @@ def prettify(elem):
 def generateBoundingBoxes(imageNameMapping):
     for imageName in imageNameMapping:
         print('Generating annotations for ' + imageName)
-        xml = boundingboxes.generateXmlWithAnnotations(imageName, inkmlLocation[imageName])
+        xml = generateXmlWithAnnotations(imageName, imageNameMapping[imageName])
         with open(str(constants.TARGET_PATH + "Annotations/" + imageName[5:10] + ".xml"), "w") as f:
             f.write(xml)

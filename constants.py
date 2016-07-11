@@ -2,7 +2,7 @@
 DATASETS_PATH = "datasets/CROHME2013_data/" # Make sure to download and place CROHME2013 dataset in that folder
 TRAIN_PATH = DATASETS_PATH + "TrainINKML/"
 TEST_PATH = DATASETS_PATH + "TestINKMLGT/"
-TARGET_PATH = "datasets/mathnet/"
+TARGET_PATH = "output/"
 ANTIALIAS_FACTOR = 2
 STROKE_HEIGHT = 25 * ANTIALIAS_FACTOR
 MAX_H = 200.0

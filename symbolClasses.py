@@ -15,7 +15,7 @@ def findAllClasses():
             else:
                 classes[symbol] = 1
     print(str(len(classes)) + " symbol classes found.")
-    functions.saveDictToFile(symbolClasses, "classes.txt")
+    functions.saveDictToFile(classes, str(constants.TARGET_PATH + "classes.txt"))
     return classes
 
 def generateClassToColorMapping():
@@ -24,5 +24,5 @@ def generateClassToColorMapping():
     for key, val in sorted(classes.items()):
         classes[key] = color
         color += 1
-    functions.saveDictToFile(classes, "classColor.txt")
+    functions.saveDictToFile(classes, str(constants.TARGET_PATH + "classColor.txt"))
     return

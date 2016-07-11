@@ -119,9 +119,9 @@ def generateImages():
         imageName = "image" + str(counter).zfill(5) + ".pbm"
         imageNameMapping[imageName] = filePath
         print(filePath + " -> " + imageName)
-        generateImage(filePath, str(constants.TARGET_PATH + "images/" + imageName))
+        generateImage(filePath, str(constants.TARGET_PATH + "Images/" + imageName))
         counter += 1
 
-    functions.saveDictToFile(imageNameMapping, "imageNameMapping.txt")
+    functions.saveDictToFile(imageNameMapping, str(constants.TARGET_PATH + "imageNameMapping.txt"))
     print("Dataset generation complete!")
     return imageNameMapping
