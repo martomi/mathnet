@@ -1,12 +1,14 @@
 import symbolClasses
 import imagesGenerator
 import boundingBoxes
+import rcnnSplit
 
 def main():
     print('Starting to process dataset.')
     symbolClasses.generateClassToColorMapping()
-    imageNameMapping = imagesGenerator.generateImages()
-    boundingBoxes.generateBoundingBoxes(imageNameMapping)
+    (imageIndexToPath, startOfTestDataset) = imagesGenerator.generateImages()
+    boundingBoxes.generateBoundingBoxes(imageIndexToPath)
+    rcnnSplit.generateSplit(imageIndexToPath, startOfTestDataset)
     print('All processes finished!');
 
 if __name__ == "__main__":

@@ -113,15 +113,23 @@ def generateImage(src, dest, withAntialias=False):
 
 def generateImages():
     filePaths = functions.getAllFilePaths()
-    imageNameMapping = {}
+    imageIndexToPath = {}
     counter = 0
     for filePath in filePaths:
-        imageName = "image" + str(counter).zfill(5) + ".pbm"
-        imageNameMapping[imageName] = filePath
-        print(filePath + " -> " + imageName)
-        generateImage(filePath, str(constants.TARGET_PATH + "Images/" + imageName))
+        imageIndex = counter
+        imageIndexToPath[imageIndex] = filePath
+        print(filePath + " -> " + imageIndex)
+        generateImage(filePath, str(constants.TARGET_PATH + "Images/" + imageIndex))
+        counter += 1
+    startOfTestDataset = counter
+    filepaths = functions.getAllFilePathsTestDataset()
+    for filePath in filePaths:
+        imageIndex = counter
+        imageIndexToPath[imageIndex] = filePath
+        print(filePath + " -> " + imageIndex)
+        generateImage(filePath, str(constants.TARGET_PATH + "Images/" + imageIndex))
         counter += 1
 
-    functions.saveDictToFile(imageNameMapping, str(constants.TARGET_PATH + "imageNameMapping.txt"))
+    functions.saveDictToFile(imageIndexToPath, str(constants.TARGET_PATH + "imageIndexToPath.txt"))
     print("Dataset generation complete!")
-    return imageNameMapping
+    return (imageIndexToPath, startOfTestDataset)

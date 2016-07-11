@@ -181,9 +181,9 @@ def prettify(elem):
     reparsed = minidom.parseString(rough_string)
     return reparsed.toprettyxml(indent="\t")
 
-def generateBoundingBoxes(imageNameMapping):
-    for imageName in imageNameMapping:
-        print('Generating annotations for ' + imageName)
-        xml = generateXmlWithAnnotations(imageName, imageNameMapping[imageName])
-        with open(str(constants.TARGET_PATH + "Annotations/" + imageName[5:10] + ".xml"), "w") as f:
+def generateBoundingBoxes(imageIndexToPath):
+    for imageIndex in imageIndexToPath:
+        print('Generating annotations for ' + imageIndex)
+        xml = generateXmlWithAnnotations(imageIndex, imageIndexToPath[imageIndex])
+        with open(str(constants.TARGET_PATH + "Annotations/" + str(imageIndex).zfill(5) + ".xml"), "w") as f:
             f.write(xml)
